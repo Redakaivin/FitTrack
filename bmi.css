@@ -1,0 +1,89 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+
+.navbar {
+  background-color: #200229;
+}
+
+.navbar-brand {
+  color: #ffd700 !important;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #ffd700;
+  text-shadow:
+    0 0 10px #ffd700,
+    0 0 20px #ffd700,
+    0 0 30px #ffd700,
+    0 0 40px #ffed4e;
+  transform: scale(1.05);
+}
+
+
+#home {
+  background-image: url("https://images.unsplash.com/photo-1638805981949-362f5964521e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTU5fHxneW18ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=1200");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+}
+
+#home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); 
+}
+
+#home .container {
+  position: relative;
+  z-index: 2;
+}
+
+#home h1,
+#home p {
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+#home .btn {
+  margin-top: 20px;
+}
+
+
+.card img {
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-body {
+  min-height: 180px;
+}
+
+.bmi-card {
+  max-width: 400px;
+  margin: auto;
+}
+
+.fact-list {
+  max-width: 700px;
+  margin: auto;
+}
+
+.bmi-result {
+  font-size: 1.3rem;
+  font-weight: bold;
+}

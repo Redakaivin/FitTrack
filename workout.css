@@ -1,0 +1,11 @@
+  body { font-family: 'Poppins', sans-serif; background: #f8f9fa; }
+    .goal-card {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    .goal-card:hover {
+      transform: scale(1.05);
+      border-color: #0d6efd;
+    }
+    .planner-card { max-width: 600px; margin: 2rem auto; }

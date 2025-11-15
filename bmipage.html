@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BMI Checker</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-4">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">FitTrack</a>
+    </div>
+  </nav>
+
+  <!-- BMI Section -->
+  <section class="container py-4" id="bmizone">
+    <div class="row">
+      <div class="col-lg-7 mx-auto text-center mb-5">
+        <h1 class="mb-3 text-primary">BMI Checker</h1>
+        <p class="lead mb-2">Find out your Body Mass Index and what it says about your health.</p>
+        <img 
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=60" 
+          alt="fitness-banner"
+          class="img-fluid rounded shadow-sm mb-3"
+        />
+        <p class="fst-italic text-secondary">
+          “Knowing your BMI gives you perspective ,  but health isnt just a number.”
+        </p>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="calc-box shadow-sm rounded">
+          <div class="card-body">
+            <h4 class="mb-3 text-success">Calculate Your BMI</h4>
+
+            <form id="bmiForm">
+              <div class="mb-3">
+                <label for="weight" class="form-label">Weight (kg)</label>
+                <input type="number" class="form-control" id="weight" min="1" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="height" class="form-label">Height (cm)</label>
+                <input type="number" class="form-control" id="height" min="1" required />
+              </div>
+
+              <button class="btn btn-primary w-100" type="submit">Check BMI</button>
+            </form>
+
+            <!-- results idhar ayenge  -->
+            <div id="resultBox" class="mt-4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BMI Table -->
+  <section class="container py-4" id="bmi-table">
+    <h2 class="mb-4 text-center">BMI Ranges & What They Mean</h2>
+
+    <table class="table table-bordered align-middle">
+      <thead class="table-secondary">
+        <tr>
+          <th>BMI Range</th>
+          <th>Category</th>
+          <th>Health Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>< 18.5</td><td>Underweight</td><td>Higher risk (malnutrition, weak immunity)</td></tr>
+        <tr><td>18.5 -  24.9</td><td>Normal</td><td>Low risk (healthy range)</td></tr>
+        <tr><td>25.0- 29.9</td><td>Overweight</td><td>Moderate risk (heart issues, diabetes)</td></tr>
+        <tr><td>30.0 -  34.9</td><td>Obese Class 1</td><td>Elevated risk (hypertension, stroke)</td></tr>
+        <tr><td>35.0 -  39.9</td><td>Obese Class 2</td><td>High risk (chronic conditions)</td></tr>
+        <tr><td>≥ 40.0</td><td>Obese Class 3</td><td>Very high risk (severe complications)</td></tr>
+      </tbody>
+    </table>
+
+    <p class="text-secondary text-center small">
+      *BMI is just one indicator. Muscle mass, diet, and lifestyle matter too.
+    </p>
+  </section>
+
+  <!-- Fun Facts -->
+  <section class="container py-4" id="bmifacts">
+    <h2 class="mb-4 text-center">Quick Health Facts</h2>
+    <ul class="list-group tips-list mb-5">
+      <li class="list-group-item">BMI gives a quick estimate of body fat but doesnt reflect muscle vs. fat.</li>
+      <li class="list-group-item">Waist size often predicts health risk better than BMI alone.</li>
+      <li class="list-group-item">Even small fitness changes can improve health,  not just your weight.</li>
+      <li class="list-group-item">Athletes can have a “high” BMI because muscle weighs more than fat.</li>
+      <li class="list-group-item">The best BMI range for most adults is 18.5 - 24.9, but body type matters.</li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light py-3 text-center">
+    <p class="mb-0 small">© 2025 FitTrack — stay consistent, stay strong.</p>
+  </footer>
+
+
+  <!-- js code  -->
+
+<script>
+
+
+    let  bmiForm = document.getElementById('bmiForm');
+    let  resultBox = document.getElementById('resultBox');
+
+    bmiForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let  weight = parseFloat(document.getElementById('weight').value);
+      let  height  = parseFloat(document.getElementById('height').value);
+
+
+      if (!weight || !height || weight <= 0 || height <= 0) {
+        resultBox.innerHTML = `<div class="alert alert-warning">Please enter valid numbers!</div>`;
+        return;
+      }
+
+      let  heightM = height / 100;
+      let  bmi = (weight / (heightM ** 2)).toFixed(1);
+
+      let category = '';
+      let note = '';
+
+      if (bmi < 18.5) {
+        category = 'Underweight';
+        note = 'You might need more nutrition';
+      } else if (bmi < 25) {
+        category = 'Normal';
+        note = 'Nice! You are in a healthy range. Keep it up.';
+      } else if (bmi < 30) {
+        category = 'Overweight';
+        note = 'Time to be a bit more active and focus on diet.';
+      } else if (bmi < 35) {
+        category = 'Obese (Class 1)';
+        note = 'Higher risk zone — consider consulting your doctor.';
+      } else if (bmi < 40) {
+        category = 'Obese (Class 2)';
+        note = 'Significant risk. Seek medical advice and make gradual changes.';
+      } 
+
+      // render result
+      resultBox.innerHTML = `
+        <div class="alert alert-info mt-2">
+          <strong>Your BMI:</strong> <span class="text-primary">${bmi}</span><br>
+          <strong>Category:</strong> ${category}<br>
+          <small class="text-secondary">${note}</small>
+        </div>
+      `;
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
